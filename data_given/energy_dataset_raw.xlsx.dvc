@@ -1,0 +1,4 @@
+outs:
+- md5: a708d1e11eb6ffe4cf039e32f0bdbf64
+  size: 76189
+  path: energy_dataset_raw.xlsx
