@@ -7,12 +7,28 @@ stages:
       md5: a708d1e11eb6ffe4cf039e32f0bdbf64
       size: 76189
     - path: src/get_data.py
-      md5: b580e684a5498c6cfaba389ba7a04dcf
-      size: 582
+      md5: 3386389677fc99b6193d0436b7d906a1
+      size: 592
     - path: src/load_data.py
-      md5: 6a402b9b5da6e71e53a1b9022ec3b816
-      size: 783
+      md5: 9cb8124bef3ee455a5cfe0d8024b2e4f
+      size: 791
     outs:
     - path: data/raw/energy_dataset_raw.csv
       md5: 70ac35103464f8ae64d186fc21450558
       size: 37066
+  split_data:
+    cmd: python src/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/energy_dataset_raw.csv
+      md5: 70ac35103464f8ae64d186fc21450558
+      size: 37066
+    - path: src/split_data.py
+      md5: 2ea625061b3a8ae11bd7330b99a628da
+      size: 972
+    outs:
+    - path: data/processed/test_energy_efficiency.csv
+      md5: b7d45204b985e9d9bd43e011e920029c
+      size: 7540
+    - path: data/processed/train_energy_efficiency.csv
+      md5: 538068371d0fa679af40f4efb966fd06
+      size: 29673
