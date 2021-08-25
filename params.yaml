@@ -7,7 +7,7 @@ data_source:
   s3_source: data_given/energy_dataset_raw.xlsx
 
 load_data:
-  raw_dataset_csv: data/raw/energy_dataset_raw.xlsx
+  raw_dataset_csv: data/raw/energy_dataset_raw.csv
 
 split_data:
   train_path: data/processed/train_winequality.csv
