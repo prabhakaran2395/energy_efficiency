@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: data_given/energy_dataset_raw.xlsx
+      md5: a708d1e11eb6ffe4cf039e32f0bdbf64
+      size: 76189
+    - path: src/get_data.py
+      md5: b580e684a5498c6cfaba389ba7a04dcf
+      size: 582
+    - path: src/load_data.py
+      md5: 6a402b9b5da6e71e53a1b9022ec3b816
+      size: 783
+    outs:
+    - path: data/raw/energy_dataset_raw.csv
+      md5: 70ac35103464f8ae64d186fc21450558
+      size: 37066
