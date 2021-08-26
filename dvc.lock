@@ -7,11 +7,11 @@ stages:
       md5: a708d1e11eb6ffe4cf039e32f0bdbf64
       size: 76189
     - path: src/get_data.py
-      md5: 3386389677fc99b6193d0436b7d906a1
-      size: 592
+      md5: b580e684a5498c6cfaba389ba7a04dcf
+      size: 582
     - path: src/load_data.py
-      md5: 9cb8124bef3ee455a5cfe0d8024b2e4f
-      size: 791
+      md5: f13120dc7136cb55c94390a0d237a9bd
+      size: 784
     outs:
     - path: data/raw/energy_dataset_raw.csv
       md5: 70ac35103464f8ae64d186fc21450558
@@ -32,3 +32,29 @@ stages:
     - path: data/processed/train_energy_efficiency.csv
       md5: 538068371d0fa679af40f4efb966fd06
       size: 29673
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_energy_efficiency.csv
+      md5: b7d45204b985e9d9bd43e011e920029c
+      size: 7540
+    - path: data/processed/train_energy_efficiency.csv
+      md5: 538068371d0fa679af40f4efb966fd06
+      size: 29673
+    - path: src/train_and_evaluate.py
+      md5: e79b063ac283c8b5ba924bd9f9b2271e
+      size: 2990
+    params:
+      params.yaml:
+        estimators.RandomForestRegressor.params.min_samples_split: 2
+        estimators.RandomForestRegressor.params.n_estimators: 100
+    outs:
+    - path: reports/params.json
+      md5: 5412a8e5de2d83bdc211146a33df4d9c
+      size: 58
+    - path: reports/scores.json
+      md5: 8ee686109a90fcb69ba1b9de46441d87
+      size: 99
+    - path: saved_models/rf_model.joblib
+      md5: a61cd1fb07fe00f399c7c6e7b5ea49b0
+      size: 5584848

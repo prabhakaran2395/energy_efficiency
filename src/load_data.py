@@ -5,7 +5,6 @@ import argparse
 from get_data import get_data, read_params
 
 def load_and_save(config_path):
-
     config = read_params(config_path)
     df = get_data(config_path)
     column_names = ['Relative_Compactness', 'Surface_Area', 'Wall_Area',
@@ -18,8 +17,7 @@ def load_and_save(config_path):
     raw_data_path = config["load_data"]["raw_dataset_csv"]
     df.to_csv(raw_data_path, index=False)
 
-if __name__ == '__main__':
-    
+if __name__ == '__main__': 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="params.yaml")
     parsed_args = parser.parse_args()

@@ -5,7 +5,6 @@ import argparse
 from get_data import read_params
 
 def split_and_save(config_path):
-    
     config = read_params(config_path)
     train_data_path = config["split_data"]["train_path"]
     test_data_path = config["split_data"]["test_path"]
