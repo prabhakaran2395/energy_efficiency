@@ -1,8 +1,8 @@
 import pandas as pd
-from scipy.sparse.construct import rand
 from sklearn.model_selection import train_test_split
 import argparse
 from get_data import read_params
+
 
 def split_and_save(config_path):
     config = read_params(config_path)
@@ -14,15 +14,15 @@ def split_and_save(config_path):
 
     df = pd.read_csv(raw_data_path)
 
-    train, test = train_test_split(df, test_size=split_ratio, random_state=random_state)
+    train, test = train_test_split(
+        df, test_size=split_ratio, random_state=random_state)
 
     train.to_csv(train_data_path, index=False)
     test.to_csv(test_data_path, index=False)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="params.yaml")
     parsed_args = parser.parse_args()
     split_and_save(config_path=parsed_args.config)
-
-
