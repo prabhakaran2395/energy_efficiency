@@ -4,6 +4,7 @@ from flask.globals import request
 from flask.templating import render_template
 import yaml
 import joblib
+from prediction_service import prediction
 
 webapp_root = "webapp"
 params_path = "params.yaml"
@@ -29,12 +30,14 @@ def predict(data):
 def index():
     if request.method == "POST":
         if request.form:
-            data = dict(request.form).values()
-            data = [list(map(float, data))]
-            responses = predict(data)
-            # response_1 = responses[0][0]
-            # response_2 = responses[0][1]
-            return render_template("index.html", response=responses[0])
+            data = dict(request.form)
+            # data = [list(map(float, data))]
+            responses = prediction.form_response(data)
+            response_1 = round(responses[0], 2)
+            response_2 = round(responses[1], 2)
+            return render_template("index.html", response={'Heating load':response_1,
+                                    'Cooling load':response_2})
+            
             
         else:
             pass
